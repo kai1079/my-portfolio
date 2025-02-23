@@ -15,21 +15,21 @@ export const Contact: React.FC = () => (
 
           <div className="mt-6 space-y-8 md:mt-8 text-left">
             <p className="flex items-start -mx-2">
-              <img src="/src/assets/icons/social/email.png" className="w-6 h-6 mx-2 text-blue-500 " />
+              <img src="/images/assets/icons/social/email.png" className="w-6 h-6 mx-2 text-blue-500 " />
               <span className="mx-2 text-gray-700 truncate w-72 text-left">
                 phanchikhang7@gmail.com
               </span>
             </p>
 
             <p className="flex items-start -mx-2">
-              <img src="/src/assets/icons/social/linkedin.png" className="w-6 h-6 mx-2 text-blue-500" />
+              <img src="/images/assets/icons/social/linkedin.png" className="w-6 h-6 mx-2 text-blue-500" />
               <span className="mx-2 text-gray-700 truncate w-72 text-left">
                 <a href="https://www.linkedin.com/in/phankhang107">https://www.linkedin.com/in/phankhang107</a>
               </span>
             </p>
 
             <p className="flex items-start -mx-2">
-              <img src="/src/assets/icons/social/skype.png" className="w-6 h-6 mx-2 text-blue-500" />
+              <img src="/images/assets/icons/social/skype.png" className="w-6 h-6 mx-2 text-blue-500" />
               <span className="mx-2 text-gray-700 truncate w-72 text-left">live:phanchikhang7</span>
             </p>
           </div>

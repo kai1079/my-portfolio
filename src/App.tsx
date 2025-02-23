@@ -15,7 +15,7 @@ const Portfolio: React.FC = () => {
       <div className="relative">
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <video autoPlay loop muted className="w-full h-full object-cover opacity-100">
-          <source src="/src/assets/background.mp4" type="video/mp4" />
+          <source src="/images/assets/background.mp4" type="video/mp4" />
         </video>
       </div>
         <Navbar />

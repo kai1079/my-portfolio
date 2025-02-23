@@ -3,11 +3,11 @@ export const Hero: React.FC = () => (
     <header className="relative flex flex-col items-center justify-center px-12 py-16 max-w-7xl mx-auto text-center">
       {/* <div className="absolute inset-0 w-full h-full overflow-hidden">
         <video autoPlay loop muted className="w-full h-full object-cover opacity-30">
-          <source src="/src/assets/background.mp4" type="video/mp4" />
+          <source src="/images/assets/background.mp4" type="video/mp4" />
         </video>
       </div> */}
       <div className="relative z-10 flex flex-col items-center">
-        <img src="/src/assets/profile.jpeg" alt="Profile" className="w-40 h-40 rounded-full shadow-lg" />
+        <img src="/images/assets/profile.jpeg" alt="Profile" className="w-40 h-40 rounded-full shadow-lg" />
         <h1 className="text-yellow-500 text-4xl font-bold mt-4">Hello, I'm <span className="text-yellow-500">KHANG</span></h1>
         <p className="text-lg mt-2">SOFTWARE ENGINEER</p>
         <div className="mt-6 flex space-x-4">

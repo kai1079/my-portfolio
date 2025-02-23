@@ -4,12 +4,12 @@
 //       <h2 className="text-4xl font-bold text-white mb-8">My Skills</h2>
 //       <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
 //         {[
-//           { name: "Python", icon: "/src/assets/icons/python.png" },
-//           { name: "Git Source Control", icon: "/src/assets/icons/git.png" },
-//           { name: "C#", icon: "/src/assets/icons/dotnet.png" },
-//           { name: "Java", icon: "/src/assets/icons/java.png" },
-//           { name: "Database", icon: "/src/assets/icons/mysql.png" },
-//           { name: "AWS Server", icon: "/src/assets/icons/aws.png" },
+//           { name: "Python", icon: "/images/assets/icons/python.png" },
+//           { name: "Git Source Control", icon: "/images/assets/icons/git.png" },
+//           { name: "C#", icon: "/images/assets/icons/dotnet.png" },
+//           { name: "Java", icon: "/images/assets/icons/java.png" },
+//           { name: "Database", icon: "/images/assets/icons/mysql.png" },
+//           { name: "AWS Server", icon: "/images/assets/icons/aws.png" },
 //         ].map((skill, index) => (
 //           <div key={index} className="bg-gray-800 rounded-xl p-6 flex flex-col items-center justify-center hover:bg-yellow-500 transition duration-300">
 //             <img src={skill.icon} alt={skill.name} className="w-12 h-12 mb-3" />
@@ -26,16 +26,16 @@
 //     <h2 className="text-4xl font-bold text-black mb-8">SKILLS</h2>
 //     <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
 //       {[
-//         { name: "Python", icons: ["/src/assets/icons/python.png"] },
-//         { name: "C# & .Net Core", icons: ["/src/assets/icons/dotnet.png"] },
-//         { name: "Java", icons: ["/src/assets/icons/java.png", "/src/assets/icons/spring.png"] },
-//         { name: "Git Source Control", icons: ["/src/assets/icons/git.png"] },
-//         { name: "Database", icons: ["/src/assets/icons/mysql.png", "/src/assets/icons/postgresql.png", "/src/assets/icons/redis.png"] },
-//         { name: "React & Typescript", icons: ["/src/assets/icons/react.png", "/src/assets/icons/typescript.png"] },
-//         { name: "Cloud", icons: ["/src/assets/icons/aws.png", "/src/assets/icons/azure.png"] },
-//         { name: "Containerzied", icons: ["/src/assets/icons/kubernetes.png", "/src/assets/icons/docker.png"]},
-//         { name: "Messaging system", icons: ["/src/assets/icons/kafka.png", "/src/assets/icons/rabbitmq.png"] },
-//         { name: "CI/CD", icons: ["/src/assets/icons/gocd.svg", "/src/assets/icons/buildkite.png", "/src/assets/icons/jenkin.png"] },
+//         { name: "Python", icons: ["/images/assets/icons/python.png"] },
+//         { name: "C# & .Net Core", icons: ["/images/assets/icons/dotnet.png"] },
+//         { name: "Java", icons: ["/images/assets/icons/java.png", "/images/assets/icons/spring.png"] },
+//         { name: "Git Source Control", icons: ["/images/assets/icons/git.png"] },
+//         { name: "Database", icons: ["/images/assets/icons/mysql.png", "/images/assets/icons/postgresql.png", "/images/assets/icons/redis.png"] },
+//         { name: "React & Typescript", icons: ["/images/assets/icons/react.png", "/images/assets/icons/typescript.png"] },
+//         { name: "Cloud", icons: ["/images/assets/icons/aws.png", "/images/assets/icons/azure.png"] },
+//         { name: "Containerzied", icons: ["/images/assets/icons/kubernetes.png", "/images/assets/icons/docker.png"]},
+//         { name: "Messaging system", icons: ["/images/assets/icons/kafka.png", "/images/assets/icons/rabbitmq.png"] },
+//         { name: "CI/CD", icons: ["/images/assets/icons/gocd.svg", "/images/assets/icons/buildkite.png", "/images/assets/icons/jenkin.png"] },
 //       ].map((skill, index) => (
 //         <div key={index} className="bg-gray-100 rounded-xl p-6 flex flex-col items-center justify-center hover:bg-yellow-500 transition duration-300">
 //           <div className="flex space-x-2 justify-center">
@@ -61,16 +61,16 @@ export const Skills: React.FC = () => (
   
       <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
         {[
-          { name: "Python", icons: ["/src/assets/icons/python.png"] },
-          { name: "C# & .Net Core", icons: ["/src/assets/icons/dotnet.png"] },
-          { name: "Java", icons: ["/src/assets/icons/java.png", "/src/assets/icons/spring.png"] },
-          { name: "Git Source Control", icons: ["/src/assets/icons/git.png"] },
-          { name: "Database", icons: ["/src/assets/icons/mysql.png", "/src/assets/icons/postgresql.png", "/src/assets/icons/redis.png"] },
-          { name: "React & Typescript", icons: ["/src/assets/icons/react.png", "/src/assets/icons/typescript.png"] },
-          { name: "Cloud", icons: ["/src/assets/icons/aws.png", "/src/assets/icons/azure.png"] },
-          { name: "Containerized", icons: ["/src/assets/icons/kubernetes.png", "/src/assets/icons/docker.png"]},
-          { name: "Messaging system", icons: ["/src/assets/icons/kafka.png", "/src/assets/icons/rabbitmq.png"] },
-          { name: "CI/CD", icons: ["/src/assets/icons/gocd.svg", "/src/assets/icons/buildkite.png", "/src/assets/icons/jenkin.png"] },
+          { name: "Python", icons: ["/images/assets/icons/python.png"] },
+          { name: "C# & .Net Core", icons: ["/images/assets/icons/dotnet.png"] },
+          { name: "Java", icons: ["/images/assets/icons/java.png", "/images/assets/icons/spring.png"] },
+          { name: "Git Source Control", icons: ["/images/assets/icons/git.png"] },
+          { name: "Database", icons: ["/images/assets/icons/mysql.png", "/images/assets/icons/postgresql.png", "/images/assets/icons/redis.png"] },
+          { name: "React & Typescript", icons: ["/images/assets/icons/react.png", "/images/assets/icons/typescript.png"] },
+          { name: "Cloud", icons: ["/images/assets/icons/aws.png", "/images/assets/icons/azure.png"] },
+          { name: "Containerized", icons: ["/images/assets/icons/kubernetes.png", "/images/assets/icons/docker.png"]},
+          { name: "Messaging system", icons: ["/images/assets/icons/kafka.png", "/images/assets/icons/rabbitmq.png"] },
+          { name: "CI/CD", icons: ["/images/assets/icons/gocd.svg", "/images/assets/icons/buildkite.png", "/images/assets/icons/jenkin.png"] },
         ].map((skill, index) => (
           <div key={index} className="bg-gray-100 rounded-xl p-6 flex flex-col items-center justify-center hover:bg-yellow-500 transition duration-300">
             <div className="flex space-x-2 justify-center">
