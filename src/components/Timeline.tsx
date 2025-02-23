@@ -46,7 +46,7 @@ interface TimelineProps {
                         </h3>
                         {/* Displaying description as a list with dot separator */}
                         <div className="flex-col flex gap-1 text-gray-600 text-sm text-[10px]">
-                            {project.description.split('.').filter(Boolean).map((desc, i) => (
+                            {project.description.split('.').filter(Boolean).map((desc, _) => (
                             <div className="flex items-start gap-2">
                                 <span>
                                     <CpuChipIcon className="w-3 h-5"/>

@@ -48,3 +48,39 @@ export default tseslint.config({
   },
 })
 ```
+
+
+# Deployment
+🚀 Step 2: Deploy to Vercel
+1️⃣ Create a Vercel Account
+Go to Vercel
+Sign up using GitHub for easy integration.
+2️⃣ Import Your GitHub Repository
+Click “New Project”.
+Select your repository from GitHub.
+Click "Import".
+3️⃣ Configure Build Settings
+Vercel automatically detects React + Vite.
+If needed, manually set:
+
+Framework: Vite
+Build Command:
+sh
+Copy
+Edit
+npm run build
+Output Directory:
+nginx
+Copy
+Edit
+dist
+Install Command:
+sh
+Copy
+Edit
+npm install
+Click "Deploy" 🚀
+
+🚀 Step 3: Test Your Deployment
+After deployment, Vercel will provide a live URL (e.g., https://your-app.vercel.app).
+Visit the URL and test your app!

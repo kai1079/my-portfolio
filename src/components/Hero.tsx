@@ -1,4 +1,3 @@
-import { Navbar } from "./Navbar";
 
 export const Hero: React.FC = () => (
     <header className="relative flex flex-col items-center justify-center px-12 py-16 max-w-7xl mx-auto text-center">
