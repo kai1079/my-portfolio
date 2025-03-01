@@ -1,5 +1,5 @@
 import { BackwardIcon, ForwardIcon, PauseIcon, PlayIcon, SpeakerWaveIcon, SpeakerXMarkIcon } from "@heroicons/react/24/solid";
-import { Typography, Slider, IconButton, Button } from "@material-tailwind/react";
+import { Typography, Slider, IconButton } from "@material-tailwind/react";
 import { useState, useRef, useEffect } from "react";
 
 const CoverImage: React.FC = () => (
@@ -7,15 +7,6 @@ const CoverImage: React.FC = () => (
     <img src="/images/assets/profile.jpeg" alt="Profile" className="w-full object-cover" />
   </div>
 )
-
-type MusicSlideProps = {
-  value: number,
-  min: number,
-  max: number,
-  step: number,
-  onChange: (value: number) => void,
-  ariaLabel: string
-}
 
 const formatTime = (time: number) => {
   const minutes = Math.floor(time / 60);
@@ -31,11 +22,11 @@ const ProfilePicture: React.FC = () => {
   const [isDragging, setIsDragging] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  function formatDuration(value: number) {
-    const minute = Math.floor(value / 60);
-    const secondLeft = value - minute * 60;
-    return `${minute}:${secondLeft < 10 ? `0${secondLeft}` : secondLeft}`;
-  }
+  // function formatDuration(value: number) {
+  //   const minute = Math.floor(value / 60);
+  //   const secondLeft = value - minute * 60;
+  //   return `${minute}:${secondLeft < 10 ? `0${secondLeft}` : secondLeft}`;
+  // }
 
   const togglePlay = () => {
     if (audioRef.current) {
@@ -92,9 +83,9 @@ const ProfilePicture: React.FC = () => {
   };
 
   // Handle slider change (seek currentTime)
-  const handleSeek = (event) => {
+  const handleSeek = (value: number) => {
     if (audioRef.current) {
-      const newTime = (event.target.value / 100) * duration; // Scale the new time      setCurrentTime(newTime);
+      const newTime = (value / 100) * duration; // Scale the new time      setCurrentTime(newTime);
       audioRef.current.currentTime = newTime;
     }
   };
@@ -116,13 +107,13 @@ const ProfilePicture: React.FC = () => {
         <div className="flex items-center">
           <CoverImage />
           <div className="ml-10 min-w-0">
-            <Typography variant="small" color="red" className="font-medium">
+            <Typography variant="small" color="red" className="font-medium" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
               At My Worst
             </Typography>
-            <Typography color="red" className="whitespace-nowrap font-bold">
+            <Typography color="red" className="whitespace-nowrap font-bold" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
               Pink Sweats
             </Typography>
-            <Typography color="red" className="whitespace-nowrap tracking-[-0.25px]">
+            <Typography color="red" className="whitespace-nowrap tracking-[-0.25px]" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
               PINK PLANET
             </Typography>
           </div>
@@ -138,13 +129,12 @@ const ProfilePicture: React.FC = () => {
               min={0}
               step={0.01}
               max={100} // Default to 100 if duration is not available
-              onChange={handleSeek}
+              onChange={(e) => handleSeek(Number(e.target.value))}
               onPointerDown={handleDragStart}
               onPointerUp={handleDragEnd}
               className="text-gray-50"
               thumbClassName="[&::-moz-range-thumb]:rounded-none [&::-moz-range-thumb]:-mt-[4px] [&::-webkit-slider-thumb]:-mt-[4px]"
-              trackClassName="[&::-webkit-slider-runnable-track]:bg-transparent [&::-moz-range-track]:bg-transparent !bg-gray-50/10 border border-gray-50/20"
-            />
+              trackClassName="[&::-webkit-slider-runnable-track]:bg-transparent [&::-moz-range-track]:bg-transparent !bg-gray-50/10 border border-gray-50/20" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}            />
           </div>
         </div>
 
@@ -157,8 +147,7 @@ const ProfilePicture: React.FC = () => {
         <div className="flex justify-center items-center gap-4">
           <BackwardIcon className="w-8 h-8" />
           <IconButton variant="text"
-            onClick={togglePlay}
-          >
+          onClick={togglePlay} placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}          >
             {paused ? (
               <PlayIcon className="w-6 h-6" />
             ) : (
@@ -182,8 +171,7 @@ const ProfilePicture: React.FC = () => {
             className="text-gray-50 w-6"
             // barClassName="rounded-none bg-[#2ec946]"
             thumbClassName="[&::-moz-range-thumb]:rounded-none [&::-moz-range-thumb]:-mt-[4px] [&::-webkit-slider-thumb]:-mt-[4px]"
-            trackClassName="[&::-webkit-slider-runnable-track]:bg-transparent [&::-moz-range-track]:bg-transparent !bg-gray-50/10 border border-gray-50/20"
-          />
+            trackClassName="[&::-webkit-slider-runnable-track]:bg-transparent [&::-moz-range-track]:bg-transparent !bg-gray-50/10 border border-gray-50/20" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}          />
           <SpeakerWaveIcon className="w-6 h-6" color="gray" />
         </div>
       </div>
