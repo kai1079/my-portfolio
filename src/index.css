@@ -90,3 +90,7 @@ button:focus-visible {
   border-color: #fb2d2d;
   border: 5px solid #fb2d2d;
 }
+
+.timelineText {
+  color: #00000099;
+}

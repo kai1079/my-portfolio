@@ -1,4 +1,4 @@
-import { Timeline } from "./Timeline";
+import {Timeline} from "./Timeline";
 
 const timelineItems = [
     {
@@ -60,6 +60,6 @@ export const Experience: React.FC = () => (
             <div className="w-24 h-0.5 bg-yellow-500"></div>
         </div>
   
-        <Timeline items={timelineItems} />
+        <Timeline items={timelineItems}/>
     </section>
 )

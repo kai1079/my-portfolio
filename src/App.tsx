@@ -1,25 +1,24 @@
 
 import './App.css'
-import { Hero } from './components/Hero';
-import {About} from './components/About';
+import { Hero } from './components/ Header/Hero';
+import { About } from './components/About';
 import { Skills } from './components/Skills';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
-import { Navbar } from './components/Navbar';
-import {Experience} from './components/Experience';
+import { Navbar } from './components/ Header/Navbar';
+import { Experience } from './components/Experience';
+import { BackgroundVideo } from './components/ Header/BackgroundVideo';
+import { Header } from './components/ Header/Header';
 
 const Portfolio: React.FC = () => {
   return (
-    <div className="bg-sky-0 text-white min-h-screen font-sans antialiased">
-      <div className="relative">
-      <div className="absolute inset-0 w-full h-full overflow-hidden">
-        <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-100">
-          <source src="/images/assets/background.mp4" type="video/mp4" />
-        </video>
-      </div>
+    <div className="bg-sky-0 text-white min-h-screen font-sans ">
+      {/* <div className="relative">
+        <BackgroundVideo />
         <Navbar />
         <Hero />
-      </div>
+      </div> */}
+      <Header />
       <About />
       <Skills />
       <Experience />
