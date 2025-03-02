@@ -37,7 +37,7 @@ const data = {
             pointBackgroundColor: colors.indigo[600],
             pointBorderColor: "#ffffff",
             pointRadius: 6,
-            pointHoverRadius: 10,
+            pointHoverRadius: 10
         },
     ],
 }
@@ -57,7 +57,6 @@ export const SkillRadar: React.FC = () => {
                 loop: true,
             }
         },
-
         plugins: {
             datalabels: {
                 labels: {
@@ -107,6 +106,7 @@ export const SkillRadar: React.FC = () => {
             <div className="flex relative items-center justify-center w-full" >
                 <div className='flex flex-1 w-full h-full items-center justify-center mx-auto'>
                     <div className='w-full h-full'>
+                        {/* @ts-ignore: Ignore the type error when passing 'options' */}
                         <Radar ref={chartRef} data={data} options={options} />
                     </div>
                 </div>
