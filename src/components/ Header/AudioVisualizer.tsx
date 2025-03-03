@@ -4,13 +4,20 @@ import { BackwardIcon, ForwardIcon, PauseIcon, PlayIcon } from "@heroicons/react
 import { Slider, IconButton } from "@material-tailwind/react";
 
 interface AudioVisualizerProps {
-    audioUrl: string | null;
+    musics: Music[];
     profileImageUrl?: string | null;
     profileSize?: number
 }
 
-const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ audioUrl, profileImageUrl, profileSize = 0.6 }) => {
+type Music = {
+    id: number;
+    src: string;
+};
+
+const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ musics, profileImageUrl, profileSize = 0.6 }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const getRandomIndex = () => Math.floor(Math.random() * musics.length);
+    const [currentIndex, setCurrentIndex] = useState(getRandomIndex);
     const [audioContext, setAudioContext] = useState<AudioContext | null>(null);
     const [analyser, setAnalyser] = useState<AnalyserNode | null>(null);
 
@@ -41,6 +48,20 @@ const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ audioUrl, profileImag
         }
     };
 
+    // Next song
+    const nextSong = () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % musics.length);
+        setPaused(true);
+    };
+
+    // Previous song
+    const prevSong = () => {
+        setCurrentIndex((prevIndex) =>
+            prevIndex === 0 ? musics.length - 1 : prevIndex - 1
+        );
+        setPaused(true);
+    };
+
     // Handle slider seeking
     const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = Number(e.target.value);
@@ -60,7 +81,7 @@ const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ audioUrl, profileImag
     };
 
     const initAudio = () => {
-        if (!audioUrl) return;
+        if (!musics[currentIndex]?.src) return;
         // Close previous context if it exists
         if (audioContext) {
             audioContext.close();
@@ -72,7 +93,7 @@ const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ audioUrl, profileImag
         newAnalyser.fftSize = 256; // Smaller fftSize for better circular visualization
 
         // Create and set audio element
-        const newAudioElement = new Audio(audioUrl);
+        const newAudioElement = new Audio(musics[currentIndex]?.src);
         audioRef.current = newAudioElement;
 
         // Set up audio context source
@@ -90,7 +111,7 @@ const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ audioUrl, profileImag
     };
 
     useEffect(() => {
-        if (!audioUrl) return;
+        if (!musics[currentIndex]?.src) return;
 
         initAudio();
 
@@ -103,7 +124,7 @@ const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ audioUrl, profileImag
                 audioContext.close();
             }
         };
-    }, [audioUrl]);
+    }, [currentIndex]);
 
     // Listen for audio element events
     useEffect(() => {
@@ -129,7 +150,7 @@ const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ audioUrl, profileImag
             audioElement.removeEventListener('loadedmetadata', handleMetadata);
             audioElement.removeEventListener('timeupdate', handleTimeUpdate);
         };
-    }, [isDragging, paused]);
+    }, [isDragging, paused, musics]);
 
     useEffect(() => {
         if (!analyser || !canvasRef.current) return;
@@ -274,7 +295,8 @@ const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ audioUrl, profileImag
                 </div>
                 {/* Play/Pause buttons */}
                 <div className="flex justify-center items-center gap-4">
-                    <BackwardIcon className="w-8 h-8" />
+                    {/* @ts-ignore */}
+                    <IconButton variant='text'><BackwardIcon className="w-8 h-8" onClick={prevSong} /></IconButton>
                     <IconButton variant="text"
                         onClick={togglePlay} placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}          >
                         {paused ? (
@@ -283,23 +305,10 @@ const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ audioUrl, profileImag
                             <PauseIcon className="w-6 h-6" />
                         )}
                     </IconButton>
-                    <ForwardIcon className="w-8 h-8" />
-                </div>
+                    {/* @ts-ignore */}
+                    <IconButton variant='text' onClick={nextSong}><ForwardIcon className="w-8 h-8" /></IconButton>
 
-                { /* Volume */}
-                {/* <div className="flex relative mt-5 justify-center items-center space-x-2 mb-1 px-1">
-                    <SpeakerXMarkIcon className="w-6 h-6" color="gray" />
-                    <Slider
-                        size="sm"
-                        defaultValue={0}
-                        min={0}
-                        step={1}
-                        max={100}
-                        className="text-gray-50 w-6"
-                        thumbClassName="[&::-moz-range-thumb]:rounded-none [&::-moz-range-thumb]:-mt-[4px] [&::-webkit-slider-thumb]:-mt-[4px]"
-                        trackClassName="[&::-webkit-slider-runnable-track]:bg-transparent [&::-moz-range-track]:bg-transparent !bg-gray-50/10 border border-gray-50/20" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} />
-                    <SpeakerWaveIcon className="w-6 h-6" color="gray" />
-                </div> */}
+                </div>
             </div>
         </div>
     );

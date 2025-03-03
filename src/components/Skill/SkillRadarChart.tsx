@@ -1,3 +1,6 @@
+import { useEffect, useRef, useState } from "react";
+import { Radar } from 'react-chartjs-2';
+import colors from "tailwindcss/colors"; // Import Tailwind colors
 import {
     Chart as ChartJS,
     RadialLinearScale,
@@ -5,117 +8,228 @@ import {
     LineElement,
     Filler,
     Tooltip,
-    Legend,
-    Align,
+    Legend
 } from 'chart.js';
-import { useRef } from 'react';
-import { Radar } from 'react-chartjs-2';
-import colors from "tailwindcss/colors"; // Import Tailwind colors
-import ChartDataLabels from "chartjs-plugin-datalabels";
-import SkillSliders from './SkillSlider';
-import { SkillData } from "./SkillData"; // Import dataset
-import { Anchor } from 'chartjs-plugin-datalabels/types/options';
+import { SkillData } from "./SkillData";
+import SkillSliders from "./SkillSlider";
 
+// Register the required Chart.js components
 ChartJS.register(
     RadialLinearScale,
     PointElement,
     LineElement,
     Filler,
     Tooltip,
-    Legend,
-    ChartDataLabels
+    Legend
 );
 
-const data = {
-    labels: SkillData.categories.map((cat) => cat.name),
-    datasets: [
-        {
-            label: "Software Development Skills",
-            data: SkillData.categories.map((cat) => cat.value),
-            borderColor: "rgba(59, 130, 246, 1)",
-            backgroundColor: "rgba(59, 130, 246, 0.2)",
-            pointBackgroundColor: colors.indigo[600],
-            pointBorderColor: "#ffffff",
-            pointRadius: 6,
-            pointHoverRadius: 10
-        },
-    ],
+interface SkillsRadarProps {
+    skills?: {
+        name: string;
+        value: number;
+    }[];
 }
 
-
-export const SkillRadar: React.FC = () => {
+export const SkillRadar: React.FC<SkillsRadarProps> = ({ skills = SkillData.categories }) => {
     const chartRef = useRef<any>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [radarAngle, setRadarAngle] = useState(0);
+    const [pingPoints, setPingPoints] = useState<Array<{ x: number, y: number, size: number, opacity: number, id: number }>>([]);
+    const [nextId, setNextId] = useState(0);
 
-    const options = {
-        responsive: true,
-        animation: {
-            radius: {
-                duration: 1000,
-                easing: 'easeOutCubic',
-                from: 8,
-                to: 15,
-                loop: true,
-            }
-        },
-        plugins: {
-            datalabels: {
-                labels: {
-                    value: {
-                        color: "green"
-                    },
-                    title: {
-                        color: colors.indigo[800]
-                    }
-                },
-                color: "black", // Text color
-                font: {
-                    size: 12,
-                },
-                anchor: "end" as Anchor, // Position relative to the point
-                align: "top" as Align, // Align text above points
-                formatter: (value: number, _: any) => {
-                    // return `${context.chart.data.labels[context.dataIndex]}: ${value}`; // ✅ Show both label and value
-                    return `${value}`;
-                },
+    // Prepare data for the chart
+    const data = {
+        labels: skills.map(skill => skill.name),
+        datasets: [
+            {
+                label: 'Skill Level',
+                data: skills.map(skill => skill.value),
+                // backgroundColor: 'rgba(246, 244, 123, 0.06)',
+                borderColor: 'rgb(224, 217, 98)',
+                borderWidth: 2,
+                pointBackgroundColor: colors.amber[300],
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: colors.amber[800],
+                pointLabelFontSize: 14,
             },
-        },
+        ],
+    };
+
+    // Chart options
+    const options = {
         scales: {
             r: {
+                angleLines: {
+                    color: colors.gray[300]
+                },
                 grid: {
                     circular: true,
-                    lineWidth: 1.5,
-                    color: colors.indigo[200],
+                    // color: 'rgba(255, 255, 255, 0.2)',
+                    color: colors.gray[300]
+                },
+                pointLabels: {
+                    color: colors.amber[700],
+                    font: {
+                        size: 14,
+                        weight: 'bold',
+                    },
                 },
                 ticks: {
-                    display: true,
-                    color: colors.indigo[700], // Hide numbers around radar chart,
-                    major: {
-                        enabled: true
-                    }
+                    backdropColor: 'transparent',
+                    color: colors.amber[800],
+                    z: 1,
+                    stepSize: 20,
+                },
+                suggestedMin: 0,
+                suggestedMax: 100,
+            },
+        },
+        plugins: {
+            legend: {
+                labels: {
+                    color: colors.black[800],
+                    font: {
+                        size: 14,
+                    },
+                },
+            },
+            tooltip: {
+                cornerRadius: 10,
+                backgroundColor: colors.violet[800],
+                titleColor: '#fff',
+                bodyColor: '#fff',
+                titleFont: {
+                    size: 10,
+                    weight: 'bold',
+                },
+                bodyFont: {
+                    size: 8,
+                },
+                padding: 5,
+                displayColors: false,
+                callbacks: {
+                    label: (context: any) => `Level: ${context.raw}/100`,
                 },
             },
         },
+        animation: {
+            duration: 2000,
+        },
+        responsive: true,
+        maintainAspectRatio: false,
     };
+
+    // Radar sweep effect
+    useEffect(() => {
+        const radarSweepInterval = setInterval(() => {
+            setRadarAngle(prevAngle => (prevAngle + 2) % 360);
+        }, 50);
+
+        return () => clearInterval(radarSweepInterval);
+    }, []);
+
+    // Calculate point positions and add pinging effect
+    useEffect(() => {
+        if (!chartRef.current || !containerRef.current) return;
+
+        const chart = chartRef.current;
+        if (!chart || !chart.chartArea) return;
+
+        // Get chart center and radius
+        // const centerX = chart.chartArea.left + chart.chartArea.width / 2;
+        // const centerY = chart.chartArea.top + chart.chartArea.height / 2;
+        // const radius = Math.min(chart.chartArea.width, chart.chartArea.height) / 2;
+
+        // Create ping points at radar data points
+        const newPingPoints: Array<{ x: number, y: number, size: number, opacity: number, id: number }> = [];
+
+        const meta = chart.getDatasetMeta(0);
+        if (meta && meta.data) {
+            meta.data.forEach((point: any, index: number) => {
+                // Only create new ping points occasionally, ensuring they only appear at actual data points
+                if (Math.random() > 0.97) {
+                    // Use the actual point location from Chart.js
+                    const pointX = point.x;
+                    const pointY = point.y;
+
+                    newPingPoints.push({
+                        x: pointX,
+                        y: pointY,
+                        size: 5,
+                        opacity: 1,
+                        id: nextId + new Date().getTime() + index // Ensure unique IDs
+                    });
+                }
+            });
+
+            if (newPingPoints.length > 0) {
+                setNextId(prevId => prevId + newPingPoints.length);
+                setPingPoints(prev => [...prev, ...newPingPoints]);
+            }
+        }
+    }, [radarAngle, skills]);
+
+    // Animate ping points
+    useEffect(() => {
+        if (pingPoints.length === 0) return;
+
+        const pingInterval = setInterval(() => {
+            setPingPoints(prev =>
+                prev.map(point => ({
+                    ...point,
+                    size: point.size + 0.8,
+                    opacity: point.opacity - 0.03
+                })).filter(point => point.opacity > 0)
+            );
+        }, 40);
+
+        return () => clearInterval(pingInterval);
+    }, [pingPoints]);
+
     return (
-        <section className="mx-auto px-12 py-16 text-center relative h-full w-full">
-            <div className="flex relative items-center justify-center mb-8 w-full">
-                <div className="w-24 h-0.5 bg-yellow-500"></div>
-                <h2 className="text-4xl font-bold text-black mx-4">SKILLS</h2>
-                <div className="w-24 h-0.5 bg-yellow-500"></div>
+        <section className="skills-radar-container mx-auto px-12 py-16 text-center relative w-full" ref={containerRef}>
+            <div className="flex flex-col items-end justify-end relative text-right mb-8 w-full">
+                <h2 className="text-4xl font-bold text-black mb-2">SKILLS</h2>
+                <div className="border-t-2 border-yellow-500 w-15 mb-4"></div>
             </div>
-            <div className="flex relative items-center justify-center w-full" >
-                <div className='flex flex-1 w-full h-full items-center justify-center mx-auto'>
-                    <div className='w-full h-full'>
-                        {/* @ts-ignore: Ignore the type error when passing 'options' */}
+            <div className="relative flex flex-row w-full p-4 overflow-hidden">
+                {/* Radar Chart Section (Dynamic) */}
+                <div className="flex-1 flex justify-center items-center w-[70%] max-sm:w-full">
+                    <div className="h-[500px] w-full relative bg-blue-50">
+                        {/* Radar Chart Component */}
+                        {/* @ts-ignore */}
                         <Radar ref={chartRef} data={data} options={options} />
+                        {/* Radar overlay container */}
+                        <div className="absolute inset-0 pointer-events-none flex">
+                            {/* Ping animations for points */}
+                            {pingPoints.map(point => (
+                                <div
+                                    key={point.id}
+                                    className="absolute rounded-full animate-ping-point"
+                                    style={{
+                                        left: `${point.x}px`,
+                                        top: `${point.y}px`,
+                                        width: `${point.size}px`,
+                                        height: `${point.size}px`,
+                                        backgroundColor: colors.amber[400],
+                                        opacity: point.opacity,
+                                        transform: 'translate(-50%, -50%)',
+                                    }}
+                                />
+                            ))}
+                        </div>
                     </div>
                 </div>
-                <div className='flex w-60 p-5 flex-none text-[8px]'>
-                    <SkillSliders />
+
+                {/* Slider Information Section (Fixed) */}
+                <div className="flex text-[10px] flex-none w-80 h-full ml-5 max-sm:flex-1 max-sm:w-full justify-center items-center">
+                    <div>
+                        {/* Sliders Component */}
+                        <SkillSliders />
+                    </div>
                 </div>
             </div>
-
         </section>
-
-    )
-}
+    );
+};

@@ -1,5 +1,5 @@
 export const About: React.FC = () => (
-    <section className="max-w-5xl mx-auto px-12 py-16 text-left relative">
+    <section className="mx-auto px-12 py-16 text-left relative h-full w-full">
       <h2 className="text-4xl font-bold text-black mb-4">ABOUT</h2>
       <div className="border-t-2 border-yellow-500 w-12 mb-4"></div>
       <p className="text-lg text-black leading-relaxed">

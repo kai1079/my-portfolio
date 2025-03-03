@@ -9,7 +9,7 @@ import { SkillRadar } from './components/Skill/SkillRadarChart';
 
 const Portfolio: React.FC = () => {
   return (
-    <div className="bg-sky-0 text-white min-h-screen font-sans ">
+    <div className="bg-sky-0 text-white min-h-screen font-sans">
       <Header />
       <About />
       <SkillRadar />

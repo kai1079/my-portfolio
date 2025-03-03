@@ -1,10 +1,9 @@
 
 export const Contact: React.FC = () => (
   <section className="max-w-6xl mx-auto px-16 py-20 relative">
-    <div className="flex items-center justify-center mb-8">
-      <div className="w-24 h-0.5 bg-yellow-500"></div>
-      <h2 className="text-4xl font-bold text-black mx-4">CONTACT ME</h2>
-      <div className="w-24 h-0.5 bg-yellow-500"></div>
+    <div className="flex flex-col items-end justify-end relative text-right mb-8 w-full">
+      <h2 className="text-4xl font-bold text-black mb-2">CONTACT</h2>
+      <div className="w-20 h-0.5 bg-yellow-500"></div>
     </div>
     <div className="container px-6 py-12 mx-auto">
       <div className="lg:flex lg:items-center lg:-mx-6">

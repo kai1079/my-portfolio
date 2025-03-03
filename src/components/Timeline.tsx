@@ -1,4 +1,4 @@
-import { CpuChipIcon } from "@heroicons/react/24/solid";
+import { Avatar, Card, CardBody, CardHeader, Chip, Typography } from "@material-tailwind/react";
 
 interface Project {
   title: string;
@@ -10,6 +10,7 @@ interface TimelineItemData {
   title: string;
   project: Project[],
   date: string;
+  logo: string;
 }
 
 interface TimelineProps {
@@ -20,7 +21,7 @@ export function Timeline({ items }: TimelineProps) {
   return (
     <div className="max-w-6xl mx-auto px-16 py-20 relative">
       {/* Vertical line */}
-      <div className="absolute left-1/2 top-0 h-full w-[2px] bg-red-300 -translate-x-1/2"></div>
+      <div className="absolute left-1/2 top-0 h-full w-[2px] bg-amber-500 -translate-x-1/2"></div>
 
       {items.map((item, index) => {
         const isEven = index % 2 === 0;
@@ -28,56 +29,69 @@ export function Timeline({ items }: TimelineProps) {
         return (
           <div key={index} className="relative flex mb-16 last:mb-0">
             {/* Empty circle on timeline (aligned centrally) */}
-            <div className="absolute left-1/2 -translate-x-1/2 top-1/7 -translate-y-1/2 w-4 h-4 rounded-full border-2 border-red-500 bg-white"></div>
+            <div className="absolute left-1/2 -translate-x-1/2 top-1/7 -translate-y-1/2 w-4 h-4 rounded-full border-2 border-amber-500 bg-white"></div>
 
             {/* Content container */}
             <div className={`w-1/2 ${isEven ? 'pr-16' : 'pl-16 ml-auto'}`}>
-              <div className={`${isEven ? 'text-right' : 'text-left'}`}>
-                <h2 className="text-xl font-bold text-gray-900 mb-2">
-                  {item.company}
-                </h2>
-                <h2 className="text-md font-bold text-gray-900 mb-2">
-                  {item.title}
-                </h2>
-                {item.project.map((project, _) => {
-                  return (
-                  <><h3 className="text-[15px] font-bold text-gray-900 mb-2">
-                          {project.title}
-                      </h3>
-                      {/* Displaying description as a list with dot separator */}
-                      <div className="flex-col flex gap-1 text-gray-600 text-sm text-[10px]">
-                          {project.description.split('.').filter(Boolean).map((desc, _) => (
-                          <div className="flex items-start gap-2">
-                              <span>
-                                  <CpuChipIcon className="w-3 h-5"/>
-                                  </span>
-                              <span className="leading-relaxed">
-                                  {desc.trim()}
-                              </span>
-                          </div>
-
-                          ))}
+              <div className={`${isEven ? 'text-left' : 'text-left'}`}>
+                {/* @ts-ignore */}
+                <Card color="transparent" shadow={false} className="w-full max-w-[26rem]">
+                  {/* @ts-ignore */}
+                  <CardHeader
+                    color="transparent"
+                    floated={false}
+                    shadow={false}
+                    className="mx-0 flex items-center gap-4 pt-0 pb-8"
+                  >
+                    {/* @ts-ignore */}
+                    <Avatar
+                      size="lg"
+                      variant="circular"
+                      src={item.logo}
+                      alt="tania andrew"
+                    />
+                    <div className="flex w-full flex-col gap-0.5">
+                      <div className="flex items-center justify-between">
+                        {/* @ts-ignore */}
+                        <Typography variant="h5">
+                          {item.company}
+                        </Typography>
+                        <div className="5 flex items-center gap-0">
+                          <Chip color="amber" value={item.date} />
+                        </div>
                       </div>
-                       </>
-                  )
-                })}
+                      {/* @ts-ignore */}
+                      <Typography>{item.title}</Typography>
+                    </div>
+                  </CardHeader>
+                  {/* @ts-ignore */}
+                  <CardBody className="mb-6 p-0">
+                    {/* @ts-ignore */}
+                    <Typography>
+                      {item.project.map((project, _) => {
+                        return (
+                          <>
+                            <div className="mb-2"><h2 className="mb-1">
+                              {project.title}
+                            </h2>
+                              {/* Displaying description as a list with dot separator */}
+                              <div className="flex-col flex gap-1 text-[12px]">
+                                {project.description.split('.').filter(Boolean).map((desc, _) => (
+                                  <div className="flex items-start gap-2">
+                                    <span className="leading-relaxed">
+                                      &quot;{desc.trim()}&quot;
+                                    </span>
+                                  </div>
 
-              </div>
-            </div>
-
-            {/* Date circle with pointer (now aligned properly) */}
-            <div 
-              className={`absolute bottom-7 w-[90px] h-[90px] top-1 rounded-full border-2 border-red-500 bg-white flex items-center justify-center
-                ${isEven ? 'right-[calc(50%-120px)]' : 'left-[calc(50%-120px)]'} dateCircle`}
-            >
-              {/* Triangle pointer (moved to connect with empty circle) */}
-              <div 
-                className={`absolute w-4 h-4 border-4 border-red-500 rotate-45 bg-white
-                  ${isEven ? '-left-[9px] border-r-0 border-t-0' : '-right-[9px] border-l-0 border-b-0'}`}
-              ></div>
-
-              <div className="text-sm font-medium text-red-500 text-center whitespace-pre-line">
-                {item.date}
+                                ))}
+                              </div>
+                            </div>
+                          </>
+                        )
+                      })}
+                    </Typography>
+                  </CardBody>
+                </Card>
               </div>
             </div>
           </div>
