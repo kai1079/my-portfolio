@@ -196,7 +196,7 @@ export const SkillRadar: React.FC<SkillsRadarProps> = ({ skills = SkillData.cate
             <div className="relative flex flex-row w-full p-4 overflow-hidden">
                 {/* Radar Chart Section (Dynamic) */}
                 <div className="flex-1 flex justify-center items-center w-[70%] max-sm:w-full">
-                    <div className="h-[500px] w-full relative bg-blue-50">
+                    <div className="h-[500px] w-full max-sm:w-full relative bg-blue-50">
                         {/* Radar Chart Component */}
                         {/* @ts-ignore */}
                         <Radar ref={chartRef} data={data} options={options} />
@@ -223,7 +223,7 @@ export const SkillRadar: React.FC<SkillsRadarProps> = ({ skills = SkillData.cate
                 </div>
 
                 {/* Slider Information Section (Fixed) */}
-                <div className="flex text-[10px] flex-none w-80 h-full ml-5 max-sm:flex-1 max-sm:w-full justify-center items-center">
+                <div className="flex text-[10px] flex-none w-80 max-sm:w-[200px] max-sm:text-[6px] h-full ml-5 max-sm:flex-1  justify-center items-right">
                     <div>
                         {/* Sliders Component */}
                         <SkillSliders />
