@@ -1,15 +1,17 @@
 // tailwind.config.js
-module.exports = {
-    content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-    theme: {
-      screens: {
-        'xs': {'min': '321px', 'max': '640px'}
-      },
-      extend: {
-        screens: {
-          'xs': '380px',
-        }
-      },
+const withMT = require("@material-tailwind/react/utils/withMT");
+
+module.exports = withMT({
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    extend: {
+      colors: {
+        border: 'hsl(var(--border))',
+        muted: 'hsl(var(--muted))',
+        "primary-foreground": "hsl(var(--primary-foreground))",
+        primary: "hsl(var(--primary))",
+      }
     },
-    plugins: [require("@material-tailwind/react/plugin")],
-  };  
+  },
+  plugins: [],
+});

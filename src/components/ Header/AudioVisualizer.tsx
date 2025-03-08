@@ -296,8 +296,8 @@ const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ musics, profileImageU
                 {/* Play/Pause buttons */}
                 <div className="flex justify-center items-center gap-4">
                     {/* @ts-ignore */}
-                    <IconButton variant='text'><BackwardIcon className="w-8 h-8" onClick={prevSong} /></IconButton>
-                    <IconButton variant="text"
+                    <IconButton variant='text' className='text-white'><BackwardIcon className="w-8 h-8" onClick={prevSong} /></IconButton>
+                    <IconButton variant="text" className='text-white'
                         onClick={togglePlay} placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}          >
                         {paused ? (
                             <PlayIcon className="w-6 h-6" />
@@ -306,7 +306,7 @@ const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ musics, profileImageU
                         )}
                     </IconButton>
                     {/* @ts-ignore */}
-                    <IconButton variant='text' onClick={nextSong}><ForwardIcon className="w-8 h-8" /></IconButton>
+                    <IconButton variant='text' className='text-white' onClick={nextSong}><ForwardIcon className="w-8 h-8" /></IconButton>
 
                 </div>
             </div>

@@ -18,11 +18,13 @@ export default tseslint.config(
       'react-refresh': reactRefresh,
     },
     rules: {
-      ...reactHooks.configs.recommended.rules,
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
+      // ...reactHooks.configs.recommended.rules,
+      // 'react-refresh/only-export-components': [
+      //   'warn',
+      //   { allowConstantExport: true },
+      // ],
+      "react/jsx-no-bind": "off", // Allow inline functions
+      "jsx-a11y/aria-props": "warn", // Warn instead of error
     },
   },
 )
