@@ -9,7 +9,7 @@ import {
     Legend
 } from 'chart.js';
 import '../../styles/SkillRadar.css'
-import { BeakerIcon, CheckCircleIcon, ChevronDownIcon, CodeBracketIcon, PaintBrushIcon, ServerIcon } from "@heroicons/react/24/solid";
+import { ChatBubbleLeftEllipsisIcon, CheckCircleIcon, ChevronDownIcon, CloudIcon, CodeBracketIcon, CodeBracketSquareIcon, CogIcon, ServerIcon, ShieldCheckIcon, TableCellsIcon, UsersIcon, WrenchScrewdriverIcon } from "@heroicons/react/24/solid";
 
 // Register the required Chart.js components
 ChartJS.register(
@@ -23,18 +23,59 @@ ChartJS.register(
 
 // Default skills data with colors and categories
 const defaultSkills: Skill[] = [
+    // Backend
+    { name: "Java", level: 90, color: "#f89820", category: "Backend" },
+    { name: "C#", level: 85, color: "#68217a", category: "Backend" },
+    { name: "Spring Boot", level: 90, color: "#6db33f", category: "Backend" },
+    { name: ".NET Core", level: 85, color: "#512bd4", category: "Backend" },
+    { name: "Python", level: 65, color: "#3776ab", category: "Backend" },
+    { name: "C/C++", level: 70, color: "#00599c", category: "SystemsProgramming" },
+
+    // Messaging
+    { name: "Kafka", level: 85, color: "#231f20", category: "Messaging" },
+    { name: "Redis", level: 80, color: "#dc382d", category: "Messaging" },
+    { name: "RabbitMQ", level: 75, color: "#ff6600", category: "Messaging" },
+
+    // Database
+    { name: "MySQL", level: 85, color: "#00758f", category: "Database" },
+    { name: "SQL Server", level: 85, color: "#0db7ed", category: "Database" },
+
+    // Cloud
+    { name: "AWS", level: 80, color: "#ff9900", category: "Cloud" },
+    { name: "Azure", level: 70, color: "#d24939", category: "Cloud" },
+
+    // DevOps
+    { name: "Kubernetes", level: 80, color: "#326ce5", category: "DevOps" },
+    { name: "Docker", level: 80, color: "#0db7ed", category: "DevOps" },
+    { name: "GoCD", level: 80, color: "#007acc", category: "DevOps" },
+    { name: "Buildkite", level: 80, color: "#3ddc84", category: "DevOps" },
+    { name: "Jenkins", level: 80, color: "#d24939", category: "DevOps" },
+
+    // Security
+    { name: "JWT", level: 85, color: "#000000", category: "Security" },
+    { name: "OAuth", level: 85, color: "#2d3748", category: "Security" },
+    { name: "Multi-Factor Authentication", level: 80, color: "#008cff", category: "Security" },
+
+    // Others
+    { name: "Bash Script", level: 60, color: "#4eaa25", category: "Others" },
+    { name: "Distributed Systems (ETCD/OpenSAF)", level: 70, color: "#00a99d", category: "Others" },
+    { name: "Postman", level: 80, color: "#ff6c37", category: "Others" },
+    { name: "TestNG", level: 70, color: "#a6120d", category: "Others" },
+
+    // Collaboration & Version Control
+    { name: "Jira", level: 85, color: "#0052cc", category: "Collaboration" },
+    { name: "Confluence", level: 85, color: "#172b4d", category: "Collaboration" },
+    { name: "Git", level: 85, color: "#f34f29", category: "VersionControl" },
+    { name: "Gerrit", level: 85, color: "#bbbbbb", category: "VersionControl" },
+
+    // Build Automation
+    { name: "Autotools", level: 65, color: "#f0db4f", category: "BuildAutomation" },
+    { name: "Makefile", level: 65, color: "#ef5734", category: "BuildAutomation" },
+
+    // Front End
     { name: "React", level: 90, color: "#61dafb", category: "Frontend" },
     { name: "TypeScript", level: 85, color: "#3178c6", category: "Frontend" },
     { name: "JavaScript", level: 95, color: "#f7df1e", category: "Frontend" },
-    { name: "HTML/CSS", level: 90, color: "#e34c26", category: "Frontend" },
-    { name: "Node.js", level: 75, color: "#68a063", category: "Backend" },
-    { name: "Express", level: 70, color: "#000000", category: "Backend" },
-    { name: "MongoDB", level: 65, color: "#4DB33D", category: "Backend" },
-    { name: "SQL", level: 60, color: "#F29111", category: "Backend" },
-    { name: "UI Design", level: 80, color: "#ff6b6b", category: "Design" },
-    { name: "Figma", level: 75, color: "#F24E1E", category: "Design" },
-    { name: "Jest", level: 65, color: "#C21325", category: "Testing" },
-    { name: "Cypress", level: 60, color: "#17202C", category: "Testing" },
 ]
 
 // Skill categories with icons and colors
@@ -49,15 +90,45 @@ const categories: Record<string, SkillCategory> = {
         icon: <ServerIcon className="h-4 w-4" />,
         color: "#10b981",
     },
-    Design: {
-        name: "Design",
-        icon: <PaintBrushIcon className="h-4 w-4" />,
-        color: "#f43f5e",
+    Cloud: {
+        name: "Cloud",
+        icon: <CloudIcon className="h-4 w-4" />,
+        color: "#0ea5e9",
     },
-    Testing: {
-        name: "Testing",
-        icon: <BeakerIcon className="h-4 w-4" />,
-        color: "#8b5cf6",
+    DevOps: {
+        name: "DevOps",
+        icon: <WrenchScrewdriverIcon className="h-4 w-4" />,
+        color: "#f59e0b",
+    },
+    Security: {
+        name: "Security",
+        icon: <ShieldCheckIcon className="h-4 w-4" />,
+        color: "#ef4444",
+    },
+    Messaging: {
+        name: "Messaging",
+        icon: <ChatBubbleLeftEllipsisIcon className="h-4 w-4" />,
+        color: "#ec4899",
+    },
+    Database: {
+        name: "Database",
+        icon: <TableCellsIcon className="h-4 w-4" />,
+        color: "#22c55e",
+    },
+    Collaboration: {
+        name: "Collaboration",
+        icon: <UsersIcon className="h-4 w-4" />,
+        color: "#6366f1",
+    },
+    VersionControl: {
+        name: "Version Control",
+        icon: <CodeBracketSquareIcon className="h-4 w-4" />,
+        color: "#f97316",
+    },
+    BuildAutomation: {
+        name: "Build Automation",
+        icon: <CogIcon className="h-4 w-4" />,
+        color: "#4b5563",
     },
 }
 
@@ -173,226 +244,226 @@ export const SkillRadar: React.FC<SkillsRadarProps> = ({ skills = defaultSkills 
     return (
         <section className="relative">
             <div className="flex flex-col items-end justify-end relative text-right mb-8 w-full">
-        <h2 className="text-4xl font-bold text-black mb-2">S K I L L S</h2>
-        <div className="border-t-2 border-yellow-500 w-30 mb-4"></div>
-      </div>
-        <div className="skills-container">
-            <div className="skills-background-pattern"></div>
-            <div className="skills-wrapper">
-                <div className="skills-header">
-                    <h4 className="skills-subtitle">A comprehensive overview of my technical expertise and proficiency levels</h4>
-                </div>
-
-                <div className="skills-grid">
-                    <div className="skills-text">
-                        <h3 className="skills-text-title">Technical Proficiency</h3>
-                        <p className="skills-text-description">
-                            With over 5 years of experience in software development, I've developed expertise in a wide range of
-                            technologies and frameworks. My focus has been on soft development, technical solutioning, technical design, problem-solving,
-                            colloration, communication and buiding high-value product.
-                        </p>
-
-                        <div className="skills-categories">
-                            {Object.entries(categories).map(([categoryName, category]) => (
-                                <div
-                                    key={categoryName}
-                                    className={`skills-category category-${categoryName.toLowerCase().replace(/\s+/g, "-")}`}
-                                    style={{
-                                        animationDelay: `${Object.keys(categories).indexOf(categoryName) * 100}ms`,
-                                        borderLeft: `4px solid ${category.color}`,
-                                    }}
-                                >
-                                    <div className="skills-category-header" onClick={() => toggleCategory(categoryName)}>
-                                        <h4 className="skills-category-title">
-                                            <span className="skills-category-icon" style={{ color: category.color }}>
-                                                {category.icon}
-                                            </span>
-                                            {categoryName}
-                                        </h4>
-                                        <ChevronDownIcon
-                                            className={`skills-category-toggle ${openCategories[categoryName] ? "open" : ""}`}
-                                        />
-                                    </div>
-
-                                    <div className={`skills-category-content ${openCategories[categoryName] ? "open" : ""}`}>
-                                        {skillsByCategory[categoryName]?.map((skill, _) => (
-                                            <div key={skill.name} className="skills-list-item">
-                                                <div className="skills-list-name">
-                                                    <CheckCircleIcon
-                                                        className="skills-list-icon"
-                                                        style={{ color: skill.color || category.color }}
-                                                    />
-                                                    <span className="skills-list-text">{skill.name}</span>
-                                                </div>
-                                                <div className="skills-list-bar-container">
-                                                    <div
-                                                        className="skills-list-bar"
-                                                        data-width={`${skill.level}%`}
-                                                        style={{
-                                                            width: openCategories[categoryName] ? `${skill.level}%` : "0%",
-                                                            backgroundColor: skill.color || category.color,
-                                                        }}
-                                                    ></div>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                <h2 className="text-4xl font-bold text-black mb-2">S K I L L S</h2>
+                <div className="border-t-2 border-yellow-500 w-30 mb-4"></div>
+            </div>
+            <div className="skills-container">
+                <div className="skills-background-pattern"></div>
+                <div className="skills-wrapper">
+                    <div className="skills-header">
+                        <h4 className="skills-subtitle">A comprehensive overview of my technical expertise and proficiency levels</h4>
                     </div>
 
-                    <div className="skills-chart-container">
-                        <div className="skills-chart-tabs">
-                            <button
-                                className={`skills-chart-tab ${activeCategory === "All" ? "active" : ""}`}
-                                onClick={() => setActiveCategory("All")}
-                            >
-                                All Skills
-                            </button>
-                            {Object.entries(categories).map(([categoryName, category]) => (
-                                <button
-                                    key={categoryName}
-                                    className={`skills-chart-tab ${activeCategory === categoryName ? "active" : ""}`}
-                                    onClick={() => setActiveCategory(categoryName)}
-                                    style={{
-                                        backgroundColor: activeCategory === categoryName ? `${category.color}20` : "",
-                                        color: activeCategory === categoryName ? category.color : "",
-                                    }}
-                                >
-                                    {categoryName}
-                                </button>
-                            ))}
-                        </div>
+                    <div className="skills-grid">
+                        <div className="skills-text">
+                            <h3 className="skills-text-title">Technical Proficiency</h3>
+                            <p className="skills-text-description">
+                                With over 5 years of experience in software development, I've developed expertise in a wide range of
+                                technologies and frameworks. My focus has been on soft development, technical solutioning, technical design, problem-solving,
+                                colloration, communication and buiding high-value product.
+                            </p>
 
-                        <div className="skills-chart-content">
-                            <svg ref={chartRef} className="skills-chart-svg" viewBox={`0 0 ${size} ${size}`}>
-                                {/* Background circles */}
-                                {circles.map((circle, i) => (
-                                    <g key={i}>
-                                        <circle cx={circle.cx} cy={circle.cy} r={circle.r} className="skills-chart-circle" />
-                                        <text
-                                            x={circle.cx}
-                                            y={circle.cy - circle.r - 5}
-                                            textAnchor="middle"
-                                            className="text-[8px] fill-gray-400"
-                                        >
-                                            {circle.label}
-                                        </text>
-                                    </g>
-                                ))}
-
-                                {/* Axes */}
-                                {points.map((point, i) => (
-                                    <line
-                                        key={i}
-                                        x1={cx}
-                                        y1={cy}
-                                        x2={cx + radius * Math.cos(point.angle)}
-                                        y2={cy + radius * Math.sin(point.angle)}
-                                        className="skills-chart-axis"
-                                    />
-                                ))}
-
-                                {/* Skill polygon */}
-                                <polygon
-                                    points={polygonPoints}
-                                    className="skills-chart-polygon"
-                                    style={{
-                                        fill: activeCategory !== "All" ? `${categories[activeCategory].color}40` : "url(#skillGradient)",
-                                        stroke: activeCategory !== "All" ? categories[activeCategory].color : "#3b82f6",
-                                    }}
-                                />
-
-                                {/* Gradient definition */}
-                                <defs>
-                                    <linearGradient id="skillGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.6" />
-                                        <stop offset="100%" stopColor="#6366f1" stopOpacity="0.2" />
-                                    </linearGradient>
-                                </defs>
-
-                                {/* Skill points */}
-                                {points.map((point, i) => (
-                                    <circle
-                                        key={i}
-                                        cx={point.x}
-                                        cy={point.y}
-                                        r={5}
-                                        className="skills-chart-point"
+                            <div className="skills-categories">
+                                {Object.entries(categories).map(([categoryName, category]) => (
+                                    <div
+                                        key={categoryName}
+                                        className={`skills-category category-${categoryName.toLowerCase().replace(/\s+/g, "-")}`}
                                         style={{
-                                            fill: point.skill.color || categories[point.skill.category].color,
+                                            animationDelay: `${Object.keys(categories).indexOf(categoryName) * 100}ms`,
+                                            borderLeft: `4px solid ${category.color}`,
                                         }}
-                                        onMouseEnter={(e) => {
-                                            const rect = e.currentTarget.getBoundingClientRect()
-                                            const x = rect.left + window.scrollX
-                                            const y = rect.top + window.scrollY
-                                            handleSkillHover(point.skill, x, y)
-                                        }}
-                                        onMouseLeave={handleSkillLeave}
-                                    />
+                                    >
+                                        <div className="skills-category-header" onClick={() => toggleCategory(categoryName)}>
+                                            <h4 className="skills-category-title">
+                                                <span className="skills-category-icon" style={{ color: category.color }}>
+                                                    {category.icon}
+                                                </span>
+                                                {categoryName}
+                                            </h4>
+                                            <ChevronDownIcon
+                                                className={`skills-category-toggle ${openCategories[categoryName] ? "open" : ""}`}
+                                            />
+                                        </div>
+
+                                        <div className={`skills-category-content ${openCategories[categoryName] ? "open" : ""}`}>
+                                            {skillsByCategory[categoryName]?.map((skill, _) => (
+                                                <div key={skill.name} className="skills-list-item">
+                                                    <div className="skills-list-name">
+                                                        <CheckCircleIcon
+                                                            className="skills-list-icon"
+                                                            style={{ color: skill.color || category.color }}
+                                                        />
+                                                        <span className="skills-list-text">{skill.name}</span>
+                                                    </div>
+                                                    <div className="skills-list-bar-container">
+                                                        <div
+                                                            className="skills-list-bar"
+                                                            data-width={`${skill.level}%`}
+                                                            style={{
+                                                                width: openCategories[categoryName] ? `${skill.level}%` : "0%",
+                                                                backgroundColor: skill.color || category.color,
+                                                            }}
+                                                        ></div>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
                                 ))}
-
-                                {/* Labels */}
-                                {points.map((point, i) => {
-                                    const labelX = cx + (radius + 20) * Math.cos(point.angle)
-                                    const labelY = cy + (radius + 20) * Math.sin(point.angle)
-                                    const textAnchor =
-                                        point.angle === -Math.PI / 2
-                                            ? "middle"
-                                            : point.angle < -Math.PI / 2 || point.angle > Math.PI / 2
-                                                ? "end"
-                                                : "start"
-
-                                    return (
-                                        <text
-                                            key={i}
-                                            x={labelX}
-                                            y={labelY}
-                                            textAnchor={textAnchor}
-                                            dominantBaseline="middle"
-                                            className="skills-chart-label"
-                                            style={{
-                                                fill: point.skill.color || categories[point.skill.category].color,
-                                            }}
-                                        >
-                                            {point.skill.name}
-                                        </text>
-                                    )
-                                })}
-                            </svg>
-
-                            {/* Tooltip */}
-                            <div
-                                ref={tooltipRef}
-                                className={`skills-tooltip ${hoveredSkill ? "visible" : ""}`}
-                                style={{
-                                    left: tooltipPosition.x + 10,
-                                    top: tooltipPosition.y - 30,
-                                }}
-                            >
-                                {hoveredSkill && (
-                                    <>
-                                        <div className="font-bold">{hoveredSkill.name}</div>
-                                        <div>Proficiency: {hoveredSkill.level}%</div>
-                                        <div>Category: {hoveredSkill.category}</div>
-                                    </>
-                                )}
                             </div>
                         </div>
 
-                        <div className="skills-legend">
-                            {Object.entries(categories).map(([categoryName, category]) => (
-                                <div key={categoryName} className="skills-legend-item">
-                                    <div className="skills-legend-color" style={{ backgroundColor: category.color }}></div>
-                                    {categoryName}
+                        <div className="skills-chart-container">
+                            <div className="skills-chart-tabs">
+                                <button
+                                    className={`skills-chart-tab ${activeCategory === "All" ? "active" : ""}`}
+                                    onClick={() => setActiveCategory("All")}
+                                >
+                                    All Skills
+                                </button>
+                                {Object.entries(categories).map(([categoryName, category]) => (
+                                    <button
+                                        key={categoryName}
+                                        className={`skills-chart-tab ${activeCategory === categoryName ? "active" : ""}`}
+                                        onClick={() => setActiveCategory(categoryName)}
+                                        style={{
+                                            backgroundColor: activeCategory === categoryName ? `${category.color}20` : "",
+                                            color: activeCategory === categoryName ? category.color : "",
+                                        }}
+                                    >
+                                        {categoryName}
+                                    </button>
+                                ))}
+                            </div>
+
+                            <div className="skills-chart-content">
+                                <svg ref={chartRef} className="skills-chart-svg" viewBox={`0 0 ${size} ${size}`}>
+                                    {/* Background circles */}
+                                    {circles.map((circle, i) => (
+                                        <g key={i}>
+                                            <circle cx={circle.cx} cy={circle.cy} r={circle.r} className="skills-chart-circle" />
+                                            <text
+                                                x={circle.cx}
+                                                y={circle.cy - circle.r - 5}
+                                                textAnchor="middle"
+                                                className="text-[8px] fill-gray-400"
+                                            >
+                                                {circle.label}
+                                            </text>
+                                        </g>
+                                    ))}
+
+                                    {/* Axes */}
+                                    {points.map((point, i) => (
+                                        <line
+                                            key={i}
+                                            x1={cx}
+                                            y1={cy}
+                                            x2={cx + radius * Math.cos(point.angle)}
+                                            y2={cy + radius * Math.sin(point.angle)}
+                                            className="skills-chart-axis"
+                                        />
+                                    ))}
+
+                                    {/* Skill polygon */}
+                                    <polygon
+                                        points={polygonPoints}
+                                        className="skills-chart-polygon"
+                                        style={{
+                                            fill: activeCategory !== "All" ? `${categories[activeCategory].color}40` : "url(#skillGradient)",
+                                            stroke: activeCategory !== "All" ? categories[activeCategory].color : "#3b82f6",
+                                        }}
+                                    />
+
+                                    {/* Gradient definition */}
+                                    <defs>
+                                        <linearGradient id="skillGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.6" />
+                                            <stop offset="100%" stopColor="#6366f1" stopOpacity="0.2" />
+                                        </linearGradient>
+                                    </defs>
+
+                                    {/* Skill points */}
+                                    {points.map((point, i) => (
+                                        <circle
+                                            key={i}
+                                            cx={point.x}
+                                            cy={point.y}
+                                            r={5}
+                                            className="skills-chart-point"
+                                            style={{
+                                                fill: point.skill.color || categories[point.skill.category].color,
+                                            }}
+                                            onMouseEnter={(e) => {
+                                                const rect = e.currentTarget.getBoundingClientRect()
+                                                const x = rect.left + window.scrollX
+                                                const y = rect.top + window.scrollY
+                                                handleSkillHover(point.skill, x, y)
+                                            }}
+                                            onMouseLeave={handleSkillLeave}
+                                        />
+                                    ))}
+
+                                    {/* Labels */}
+                                    {points.map((point, i) => {
+                                        const labelX = cx + (radius + 20) * Math.cos(point.angle)
+                                        const labelY = cy + (radius + 20) * Math.sin(point.angle)
+                                        const textAnchor =
+                                            point.angle === -Math.PI / 2
+                                                ? "middle"
+                                                : point.angle < -Math.PI / 2 || point.angle > Math.PI / 2
+                                                    ? "end"
+                                                    : "start"
+
+                                        return (
+                                            <text
+                                                key={i}
+                                                x={labelX}
+                                                y={labelY}
+                                                textAnchor={textAnchor}
+                                                dominantBaseline="middle"
+                                                className="skills-chart-label"
+                                                style={{
+                                                    fill: point.skill.color || categories[point.skill.category].color,
+                                                }}
+                                            >
+                                                {point.skill.name}
+                                            </text>
+                                        )
+                                    })}
+                                </svg>
+
+                                {/* Tooltip */}
+                                <div
+                                    ref={tooltipRef}
+                                    className={`skills-tooltip ${hoveredSkill ? "visible" : ""}`}
+                                    style={{
+                                        left: tooltipPosition.x + 10,
+                                        top: tooltipPosition.y - 30,
+                                    }}
+                                >
+                                    {hoveredSkill && (
+                                        <>
+                                            <div className="font-bold">{hoveredSkill.name}</div>
+                                            <div>Proficiency: {hoveredSkill.level}%</div>
+                                            <div>Category: {hoveredSkill.category}</div>
+                                        </>
+                                    )}
                                 </div>
-                            ))}
+                            </div>
+
+                            <div className="skills-legend">
+                                {Object.entries(categories).map(([categoryName, category]) => (
+                                    <div key={categoryName} className="skills-legend-item">
+                                        <div className="skills-legend-color" style={{ backgroundColor: category.color }}></div>
+                                        {categoryName}
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </section>
     );
 };
