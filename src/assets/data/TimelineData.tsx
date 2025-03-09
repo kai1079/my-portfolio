@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 import { BuildingOffice2Icon, CodeBracketSquareIcon, RocketLaunchIcon } from "@heroicons/react/24/solid";
-import { TimelineItemData } from "../types/TimelineType";
+import { TimelineItemData } from "../../types/TimelineType";
 
 export const timelineData: TimelineItemData[] = [
     {

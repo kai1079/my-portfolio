@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { CheckCircleIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
 import "../../assets/styles/SkillRadar.css"
+import { categories, defaultSkills } from "../../assets/data/SkillData";
 import { Skill } from "../../types/SkillType";
-import { categories, defaultSkills } from "../../assets/data/skills";
 
 interface SkillsRadarProps {
   skills?: Skill[];

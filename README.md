@@ -84,3 +84,34 @@ Click "Deploy" 🚀
 🚀 Step 3: Test Your Deployment
 After deployment, Vercel will provide a live URL (e.g., https://your-app.vercel.app).
 Visit the URL and test your app!
+
+
+
+[Structure Of Project]
+/my-project
+│── public/                     # Static assets (favicon, images, etc.)
+│── src/
+│   ├── assets/                 # Images, fonts, and static files
+│   ├── components/             # Reusable UI components
+│   ├── features/               # Feature-specific components & logic
+│   │   ├── auth/               # Authentication-related components & hooks
+│   │   ├── dashboard/          # Dashboard feature-related code
+│   ├── hooks/                  # Custom hooks
+│   ├── layouts/                # Layout components (e.g., Navbar, Sidebar)
+│   ├── pages/                  # Page components (e.g., Home, About, Contact)
+│   ├── services/               # API calls and external services
+│   ├── store/                  # Global state management (Redux, Zustand, etc.)
+│   ├── types/                  # TypeScript type definitions
+│   ├── utils/                  # Utility functions/helpers
+│   ├── App.tsx                 # Main application component
+│   ├── main.tsx                # React entry point
+│   ├── routes.tsx              # Route definitions
+│── .env                        # Environment variables
+│── .eslintrc.js                # ESLint configuration
+│── .prettierrc                 # Prettier configuration
+│── index.html                  # Main HTML file
+│── package.json                # Project dependencies
+│── tailwind.config.js          # Tailwind CSS configuration
+│── tsconfig.json               # TypeScript configuration
+│── vite.config.ts              # Vite configuration
+│── README.md                   # Project documentation
