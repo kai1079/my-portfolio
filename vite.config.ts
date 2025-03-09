@@ -17,7 +17,7 @@ export default withMT({
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
     screens: {
-      xs: { max: '425px' }
+      xs: { max: '425px' }  
     },
     extend: {},
   },

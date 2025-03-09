@@ -1,12 +1,16 @@
+import "../styles/About.css"
+
 export const About: React.FC = () => (
-    <section className="mx-auto px-12 py-16 text-left relative h-full w-full">
-      <h2 className="text-4xl font-lato font-bold text-black mb-4">A B O U T</h2>
-      <div className="border-t-2 border-yellow-500 w-20 mb-4"></div>
-      <p className="text-lg text-black leading-relaxed">
-      I am highly motivated to continuously develop my skills and advance
-professionally. I am confident in my ability to generate <span className="text-yellow-500 font-semibold">innovative</span> ideas and
-consistently focus on finding solutions to challenges. Additionally, I am a <span className="text-yellow-500 font-semibold">collaborative</span> team player, while also being <span className="text-yellow-500 font-semibold">self-motivated</span> and <span className="text-yellow-500 font-semibold">proactive</span> in
-independent learning.
+  <div className="about-container">
+    <div className="about-wrapper">
+      <h2 className="about-title">A B O U T</h2>
+      <div className="about-line"></div>
+      <p className="about-info">
+        I am highly motivated to continuously develop my skills and advance
+        professionally. I am confident in my ability to generate <span className="text-yellow-500 font-semibold">innovative</span> ideas and
+        consistently focus on finding solutions to challenges. Additionally, I am a <span className="text-yellow-500 font-semibold">collaborative</span> team player, while also being <span className="text-yellow-500 font-semibold">self-motivated</span> and <span className="text-yellow-500 font-semibold">proactive</span> in
+        independent learning.
       </p>
-    </section>
-  );
+    </div>
+  </div>
+);

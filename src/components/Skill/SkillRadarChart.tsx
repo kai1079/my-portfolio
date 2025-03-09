@@ -1,25 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import {
-    Chart as ChartJS,
-    RadialLinearScale,
-    PointElement,
-    LineElement,
-    Filler,
-    Tooltip,
-    Legend
-} from 'chart.js';
 import '../../styles/SkillRadar.css'
 import { ChatBubbleLeftEllipsisIcon, CheckCircleIcon, ChevronDownIcon, CloudIcon, CodeBracketIcon, CodeBracketSquareIcon, CogIcon, ServerIcon, ShieldCheckIcon, TableCellsIcon, UsersIcon, WrenchScrewdriverIcon } from "@heroicons/react/24/solid";
 
-// Register the required Chart.js components
-ChartJS.register(
-    RadialLinearScale,
-    PointElement,
-    LineElement,
-    Filler,
-    Tooltip,
-    Legend
-);
 
 // Default skills data with colors and categories
 const defaultSkills: Skill[] = [
@@ -242,14 +224,15 @@ export const SkillRadar: React.FC<SkillsRadarProps> = ({ skills = defaultSkills 
     }))
 
     return (
-        <section className="relative">
-            <div className="flex flex-col items-end justify-end relative text-right mb-8 w-full">
-                <h2 className="text-4xl font-bold text-black mb-2">S K I L L S</h2>
-                <div className="border-t-2 border-yellow-500 w-30 mb-4"></div>
-            </div>
+
+        // <section className="relative">
             <div className="skills-container">
                 <div className="skills-background-pattern"></div>
                 <div className="skills-wrapper">
+                    <div className="skills-title">
+                        <h2 className="skills-title-heading">S K I L L S</h2>
+                        <div className="skills-title-line"></div>
+                    </div>
                     <div className="skills-header">
                         <h4 className="skills-subtitle">A comprehensive overview of my technical expertise and proficiency levels</h4>
                     </div>
@@ -464,6 +447,6 @@ export const SkillRadar: React.FC<SkillsRadarProps> = ({ skills = defaultSkills 
                     </div>
                 </div>
             </div>
-        </section>
+        // </section>
     );
 };

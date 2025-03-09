@@ -123,19 +123,19 @@ export function TimelineItem({ item, isEven }: TimelineItemProps) {
 export const TimelineExperience: React.FC<TimelineProps> = ({ items }) => {
   const timelineRef = useRef<HTMLDivElement>(null)
   return (
-    <div ref={timelineRef} className="timeline-container mx-auto px-4 py-8">
-      <h2 className="text-4xl font-lato font-bold text-left text-black mb-4">E X P E R I E N C E S</h2>
-      <div className="border-t-2 border-yellow-500 w-40 mb-10"></div>
-      <div className="relative">
-        {/* Timeline line */}
-        {/* <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-border"></div> */}
-        <div className="timeline-line"></div>
-
-        {/* Timeline items */}
-        <div className="space-y-12">
-          {items.map((item, index) => (
-            <TimelineItem key={`${item.company}-${index}`} item={item} isEven={index % 2 === 0} />
-          ))}
+    <div ref={timelineRef} className="timeline-container">
+      <div className="timeline-wrapper">
+        <h2 className="timeline-title">E X P E R I E N C E S</h2>
+        <div className="timeline-wrapper-line"></div>
+        <div className="relative">
+          {/* Timeline line */}
+          <div className="timeline-line"></div>
+          {/* Timeline items */}
+          <div className="space-y-12">
+            {items.map((item, index) => (
+              <TimelineItem key={`${item.company}-${index}`} item={item} isEven={index % 2 === 0} />
+            ))}
+          </div>
         </div>
       </div>
     </div>

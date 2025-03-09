@@ -1,0 +1,222 @@
+@config "../../tailwind.config.js";
+@import "tailwindcss";
+
+.dashboard-container {
+    @apply py-8 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900;
+    margin-top: 70px; /* Space for fixed header */
+  }
+  
+  .dashboard-wrapper {
+    @apply max-w-7xl mx-auto;
+  }
+  
+  .dashboard-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
+  
+  .dashboard-card {
+    @apply bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg;
+    height: 100%;
+  }
+  
+  .dashboard-card-header {
+    @apply flex items-center justify-between p-4 border-b border-gray-100 dark:border-gray-700;
+  }
+  
+  .dashboard-card-title {
+    @apply text-lg font-semibold text-gray-800 dark:text-gray-200 flex items-center;
+  }
+  
+  .dashboard-card-icon {
+    @apply h-5 w-5 mr-2 text-blue-500 dark:text-blue-400;
+  }
+  
+  .dashboard-card-action {
+    @apply p-1 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200;
+  }
+  
+  .dashboard-card-content {
+    @apply p-4;
+  }
+  
+  /* Music Player Card */
+  .dashboard-music-card {
+    @apply col-span-1 md:col-span-2 lg:col-span-1;
+  }
+  
+  .music-player {
+    @apply flex flex-col items-center;
+  }
+  
+  .music-album-art {
+    @apply w-20 h-20 rounded-lg overflow-hidden shadow-md mb-4;
+  }
+  
+  .music-album-image {
+    @apply w-full h-full object-cover;
+  }
+  
+  .music-info {
+    @apply text-center mb-4;
+  }
+  
+  .music-title {
+    @apply text-base font-semibold text-gray-800 dark:text-gray-200;
+  }
+  
+  .music-artist {
+    @apply text-sm text-gray-600 dark:text-gray-400;
+  }
+  
+  .music-progress {
+    @apply w-full mb-4;
+  }
+  
+  .music-progress-bar {
+    @apply w-full h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden;
+  }
+  
+  .music-progress-fill {
+    @apply h-full bg-blue-500 dark:bg-blue-400 transition-all duration-300 ease-linear;
+  }
+  
+  .music-controls {
+    @apply flex items-center justify-center space-x-4;
+  }
+  
+  .music-control-button {
+    @apply p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200;
+  }
+  
+  .music-play-button {
+    @apply bg-red-100 text-white hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700;
+  }
+  
+  /* Weather Card */
+  .dashboard-weather-card {
+    @apply col-span-1;
+  }
+  
+  .weather-content {
+    @apply flex flex-col;
+  }
+  
+  .weather-main {
+    @apply flex items-center justify-between mb-4;
+  }
+  
+  .weather-icon {
+    @apply flex-shrink-0;
+  }
+  
+  .weather-temp {
+    @apply flex flex-col items-end;
+  }
+  
+  .weather-temp-value {
+    @apply text-3xl font-bold text-gray-800 dark:text-gray-200;
+  }
+  
+  .weather-condition {
+    @apply text-sm text-gray-600 dark:text-gray-400;
+  }
+  
+  .weather-details {
+    @apply flex justify-between items-center;
+  }
+  
+  .weather-location {
+    @apply text-sm font-medium text-gray-700 dark:text-gray-300;
+  }
+  
+  .weather-high-low {
+    @apply text-xs text-gray-600 dark:text-gray-400;
+  }
+  
+  .weather-high {
+    @apply mr-2 text-red-500 dark:text-red-400;
+  }
+  
+  .weather-low {
+    @apply text-blue-500 dark:text-blue-400;
+  }
+  
+  /* Date & Time Card */
+  .dashboard-date-card {
+    @apply col-span-1;
+  }
+  
+  .date-time-content {
+    @apply flex flex-col items-center justify-center;
+  }
+  
+  .current-time {
+    @apply text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2;
+  }
+  
+  .current-date {
+    @apply text-base text-gray-600 dark:text-gray-400;
+  }
+  
+  /* Quick Links Card */
+  .dashboard-links-card {
+    @apply col-span-1;
+  }
+  
+  .quick-links {
+    @apply grid grid-cols-2 gap-3;
+  }
+  
+  .quick-link-item {
+    @apply flex flex-col items-center p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200;
+  }
+  
+  .quick-link-icon {
+    @apply w-10 h-10 rounded-full flex items-center justify-center text-white mb-2;
+  }
+  
+  .quick-link-text {
+    @apply text-xs font-medium text-gray-700 dark:text-gray-300 text-center;
+  }
+  
+  /* Stats Card */
+  .dashboard-stats-card {
+    @apply col-span-1;
+  }
+  
+  .stats-grid {
+    @apply grid grid-cols-2 gap-4;
+  }
+  
+  .stat-item {
+    @apply flex flex-col items-center p-3 rounded-lg bg-gray-50 dark:bg-gray-700;
+  }
+  
+  .stat-value {
+    @apply text-2xl font-bold mb-1;
+  }
+  
+  .stat-label {
+    @apply text-xs text-gray-600 dark:text-gray-400;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .dashboard-container {
+      margin-top: 60px;
+    }
+  
+    .dashboard-music-card {
+      @apply col-span-1;
+    }
+  
+    .quick-links {
+      @apply grid-cols-2;
+    }
+  
+    .stats-grid {
+      @apply grid-cols-2;
+    }
+  }
+  
+  

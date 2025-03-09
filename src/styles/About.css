@@ -1,0 +1,23 @@
+@config "../../tailwind.config.js";
+@import "tailwindcss";
+
+.about-container {
+    @apply py-8 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900 dark:text-white font-lato;
+    /* margin-top: 70px;  */
+}
+
+.about-wrapper {
+    @apply max-w-7xl mx-auto;
+}
+
+.about-title {
+    @apply text-4xl font-bold;
+}
+
+.about-line {
+    @apply border-t-2 border-yellow-500 w-20 mb-4;
+}
+
+.about-info {
+    @apply text-lg leading-relaxed;
+}

@@ -16,23 +16,29 @@
 }
 
 .skills-container {
-    @apply py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden;
+    @apply py-8 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900 dark:text-white font-lato;
 }
 
 .skills-wrapper {
-    @apply max-w-7xl mx-auto relative z-10;
+    @apply max-w-7xl mx-auto;
+}
+
+.skills-title {
+    @apply flex flex-col items-end
+}
+
+.skills-title-heading {
+    @apply text-4xl text-right font-bold mb-2;
+}
+
+.skills-title-line {
+    @apply border-t-2 ml-auto border-yellow-500 w-30 mb-4;
 }
 
 .skills-header {
     @apply text-center mb-16;
 }
 
-.skills-title {
-    @apply text-4xl font-bold text-gray-900 mb-2;
-    background: linear-gradient(to right, #3b82f6, #6366f1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
 
 .skills-subtitle {
     @apply mt-4 text-lg  max-w-2xl mx-auto;

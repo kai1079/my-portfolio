@@ -1,0 +1,264 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
+@config "../../../tailwind.config.js";
+@import "tailwindcss";
+
+@layer utilities {
+    @keyframes bounceScale {
+        0%,
+        100% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.2);
+        }
+    }
+}
+
+.skills-container {
+    @apply py-8 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900 dark:text-white font-lato;
+}
+
+.skills-wrapper {
+    @apply max-w-7xl mx-auto;
+}
+
+.skills-title {
+    @apply flex flex-col items-end
+}
+
+.skills-title-heading {
+    @apply text-4xl text-right font-bold mb-2;
+}
+
+.skills-title-line {
+    @apply border-t-2 ml-auto border-yellow-500 w-30 mb-4;
+}
+
+.skills-header {
+    @apply text-center mb-16;
+}
+
+
+.skills-subtitle {
+    @apply mt-4 text-lg  max-w-2xl mx-auto;
+}
+
+.skills-grid {
+    @apply grid grid-cols-1 lg:grid-cols-5 gap-8 items-start;
+}
+
+.skills-text {
+    @apply lg:col-span-2 space-y-6;
+}
+
+.skills-text-title {
+    @apply text-2xl font-bold pb-2 inline-block;
+    border-bottom: 3px solid #101111;
+}
+
+.skills-text-description {
+    @apply text-gray-600 leading-relaxed;
+}
+
+.skills-categories {
+    @apply mt-8 space-y-6;
+}
+
+.skills-category {
+    @apply bg-white rounded-xl shadow-md p-1 transition-all duration-300 hover:shadow-lg;
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.skills-category-header {
+    @apply flex items-center justify-between cursor-pointer;
+}
+
+.skills-category-title {
+    @apply text-sm font-semibold text-gray-800 flex items-center;
+}
+
+.skills-category-icon {
+    @apply mr-2 h-5 w-5;
+}
+
+.skills-category-toggle {
+    @apply h-4 w-4 text-gray-500 transition-transform duration-300;
+}
+
+.skills-category-toggle.open {
+    @apply transform rotate-180;
+}
+
+.skills-category-content {
+    @apply mt-2 grid grid-cols-1 sm:grid-cols-2 gap-3 overflow-hidden transition-all duration-300;
+    max-height: 0;
+    opacity: 0;
+}
+
+.skills-category-content.open {
+    @apply opacity-100;
+    max-height: 500px;
+}
+
+.skills-list-item {
+    @apply flex items-center justify-between p-2 rounded-lg transition-all duration-300 hover:bg-blue-50;
+}
+
+.skills-list-name {
+    @apply flex items-center;
+}
+
+.skills-list-icon {
+    @apply mr-2 h-4 w-4 text-blue-500;
+}
+
+.skills-list-text {
+    @apply text-gray-700 font-medium;
+}
+
+.skills-list-bar-container {
+    @apply w-24 h-2 bg-gray-200 rounded-full overflow-hidden;
+}
+
+.skills-list-bar {
+    @apply h-full rounded-full transition-all duration-1000 ease-out;
+}
+
+.skills-chart-container {
+    @apply lg:col-span-3 bg-white rounded-xl shadow-lg p-6 relative;
+    min-height: 450px;
+}
+
+.skills-chart-tabs {
+    @apply flex space-x-1 mb-6 overflow-x-auto pb-2;
+}
+
+.skills-chart-tab {
+    @apply px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 whitespace-nowrap;
+}
+
+.skills-chart-tab.active {
+    @apply bg-blue-100 text-blue-700;
+}
+
+.skills-chart-tab:not(.active) {
+    @apply text-gray-600 hover:bg-gray-100;
+}
+
+.skills-chart-content {
+    @apply relative;
+    height: 350px;
+}
+
+.skills-chart-svg {
+    @apply w-full h-full;
+}
+
+.skills-chart-polygon {
+    @apply stroke-2 transition-all duration-1000 ease-out;
+    fill-opacity: 0.2;
+    stroke-linejoin: round;
+}
+
+.skills-chart-circle {
+    @apply fill-white stroke-gray-200;
+}
+
+.skills-chart-axis {
+    @apply stroke-gray-300;
+    stroke-dasharray: 2;
+}
+
+.skills-chart-label {
+    @apply text-xs font-medium fill-gray-700 transition-all duration-300;
+}
+
+.skills-chart-label:hover {
+    @apply font-bold;
+    transform: scale(1.1);
+}
+
+.skills-chart-point {
+    @apply transition-transform duration-300 ease-in-out;
+    filter: drop-shadow(0px 0px 3px rgba(59, 130, 246, 0.5));
+}
+
+*/ .skills-chart-point:hover {
+    @apply scale-110;
+    transform: scale(3);
+}
+
+.skills-tooltip {
+    @apply absolute bg-gray-900 text-black text-xs rounded-lg py-2 px-3 shadow-lg z-50 transition-all duration-200 pointer-events-none opacity-0;
+    transform: translate(-50%, -100%) translateY(-5px);
+}
+
+.skills-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #1f2937 transparent transparent transparent;
+}
+
+.skills-tooltip.visible {
+    @apply opacity-100;
+    transform: translate(-50%, -100%) translateY(-10px);
+}
+
+.skills-legend {
+    @apply flex flex-wrap justify-center mt-6 gap-4;
+}
+
+.skills-legend-item {
+    @apply flex items-center text-xs font-medium;
+}
+
+.skills-legend-color {
+    @apply w-3 h-3 rounded-full mr-1;
+}
+
+.skills-background-pattern {
+    @apply absolute inset-0 opacity-5 pointer-events-none;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 768px) {
+    .skills-grid {
+        @apply grid-cols-1;
+    }
+
+    .skills-chart-container {
+        min-height: 350px;
+    }
+
+    .skills-chart-content {
+        height: 300px;
+    }
+}
