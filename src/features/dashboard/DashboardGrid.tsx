@@ -495,7 +495,7 @@ const musicTracks = [
   {
     title: "Ikigai",
     artist: "Tang Duy Tan",
-    cover: "/images/musics/ikigai.jpeg?height=80&width=80",
+    cover: "/images/musics/ikigai.jpg?height=80&width=80",
     audio: "/musics/ikigai.mp3",
   },
   {

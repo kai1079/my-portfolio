@@ -1,4 +1,4 @@
-import { XMarkIcon } from "@heroicons/react/24/outline"
+import { XMarkIcon } from "@heroicons/react/24/solid"
 
 interface HeaderNavProps {
     isMenuOpen: boolean
@@ -8,9 +8,12 @@ interface HeaderNavProps {
 export const HeaderNav: React.FC<HeaderNavProps> = ({ isMenuOpen, onClose }) => {
     return (
         <nav className={`header-nav ${isMenuOpen ? "header-nav-open" : ""}`}>
-        <button className="header-close-menu" onClick={onClose}>
+            {!isMenuOpen && <button className="header-close-menu" onClick={onClose}>
           <XMarkIcon className="h-6 w-6" />
-        </button>
+        </button>}
+        {/* <button className="header-close-menu" onClick={onClose}>
+          <XMarkIcon className="h-6 w-6" />
+        </button> */}
 
         <ul className="header-nav-list">
           <li className="header-nav-item">

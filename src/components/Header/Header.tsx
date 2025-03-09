@@ -6,7 +6,7 @@ import { HeaderNav } from "./HeaderNav"
 import { HeaderActions } from "./HeaderActions"
 
 export const Header: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(true)
   const scrolled = useScroll()
 
   return (
