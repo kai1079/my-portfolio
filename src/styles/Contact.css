@@ -23,11 +23,15 @@
 }
 
 .contact-body {
-  @apply rounded-2xl shadow-lg flex flex-col md:flex-row w-full max-w-4xl;
+  @apply rounded-2xl shadow-lg flex flex-col md:flex-row w-full;
 }
 
 .contact-info {
-  @apply bg-gray-300 p-8 md:w-1/3 rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none dark:bg-gray-800;
+  @apply flex-1 bg-gray-300 p-8 md:w-1/3 rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none dark:bg-gray-800;
+}
+
+.contact-card-container {
+    @apply flex-1;
 }
 
 .contact-info h2 {
@@ -59,7 +63,7 @@
 }
 
 .contact-form {
-  @apply p-8 md:w-2/3 dark:bg-gray-800;
+  @apply flex-1 p-8 md:w-2/3 dark:bg-gray-800;
 }
 
 .contact-form h2 {
